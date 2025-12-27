@@ -1,4 +1,4 @@
-# 1. Create the Storage Bucket (Infrastructure)
+# Storage Bucket (Infrastructure)
 
 resource "google_storage_bucket" "input_bucket" {
   name          = var.bucket_name
@@ -11,7 +11,6 @@ resource "google_storage_bucket" "input_bucket" {
 
 }
 
-# 2. Create a Service Account (Identity)
 # This is what the Python code will "wear" to get permissions
 
 resource "google_service_account" "function_sa" {
@@ -20,7 +19,6 @@ resource "google_service_account" "function_sa" {
 
 }
 
-# 3. Give the Service Account "Object Viewer" permission on the bucket
 # This is "Least Privilege" - it can see files but not delete the bucket
 
 resource "google_storage_bucket_iam_binding" "bucket_viewer" {
